@@ -3,8 +3,15 @@ dotenv.config();
 
 const express = require("express");
 const cors = require("cors");
+const fs = require("fs");
 const connectDB = require("./config/db");
 const startCronJobs = require("./utils/cronJobs");
+
+// Auto create uploads folder
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads");
+  console.log("uploads folder created");
+}
 
 connectDB();
 
